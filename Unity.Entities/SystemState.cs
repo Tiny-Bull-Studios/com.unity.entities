@@ -672,7 +672,12 @@ namespace Unity.Entities
                 for (int i = 0; i != required.Length; i++)
                 {
                     EntityQuery query = required[i];
-                    if (query.IsEmptyIgnoreFilter)
+// TBS MOD START
+// BEFORE
+                    //if (query.IsEmptyIgnoreFilter)
+// AFTER
+                    if (query.IsEmpty)
+// TBS MOD END
                         return false;
                 }
 
@@ -689,7 +694,12 @@ namespace Unity.Entities
                 for (int i = 0; i != length; i++)
                 {
                     EntityQuery query = eqs[i];
-                    if (!query.IsEmptyIgnoreFilter)
+// TBS MOD START
+// BEFORE
+                    //if (query.IsEmptyIgnoreFilter)
+// AFTER
+                    if (query.IsEmpty)
+// TBS MOD END
                         return true;
                 }
 
