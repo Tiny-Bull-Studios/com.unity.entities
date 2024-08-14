@@ -37,8 +37,12 @@ namespace Unity.Entities
         }
 
         static readonly SharedStatic<int> _ENABLE_PRE_PLAYBACK_VALIDATION = ECBPrePlaybackValidation.Ref;
-
-        internal static bool ENABLE_PRE_PLAYBACK_VALIDATION
+// TBS MOD START
+// BEFORE
+        //internal static bool ENABLE_PRE_PLAYBACK_VALIDATION
+// AFTER
+        public static bool ENABLE_PRE_PLAYBACK_VALIDATION
+// TBS MOD END
         {
             get => _ENABLE_PRE_PLAYBACK_VALIDATION.Data != 0;
             set => _ENABLE_PRE_PLAYBACK_VALIDATION.Data = value ? 1 : 0;
