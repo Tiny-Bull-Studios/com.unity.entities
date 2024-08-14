@@ -77,7 +77,12 @@ namespace Unity.Entities
         public static void Create(EntityQueryManager* queryManager, ComponentDependencyManager* dependencyManager)
         {
             queryManager->m_DependencyManager = dependencyManager;
-            queryManager->m_EntityQueryDataChunkAllocator = new BlockAllocator(AllocatorManager.Persistent, 16 * 1024 * 1024); // 16MB should be enough
+// TBS MOD START
+// BEFORE
+            //queryManager->m_EntityQueryDataChunkAllocator = new BlockAllocator(AllocatorManager.Persistent, 16 * 1024 * 1024); // 16MB should be enough
+// AFTER
+            queryManager->m_EntityQueryDataChunkAllocator = new BlockAllocator(AllocatorManager.Persistent, 256 * 1024 * 1024); // 16MB should be enough
+// TBS MOD END
             ref var entityQueryCache = ref UnsafeUtility.As<UntypedUnsafeParallelHashMap, UnsafeParallelMultiHashMap<int, int>>(ref queryManager->m_EntityQueryDataCacheUntyped);
             entityQueryCache = new UnsafeParallelMultiHashMap<int, int>(1024, Allocator.Persistent);
             queryManager->m_EntityQueryDatas = new UnsafePtrList<EntityQueryData>(0, Allocator.Persistent);

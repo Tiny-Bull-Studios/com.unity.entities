@@ -758,8 +758,12 @@ namespace Unity.Entities
 
             entities->m_ComponentTypeOrderVersion = Memory.Unmanaged.Array.Allocate<int>(TypeManager.MaximumTypesCount, Allocator.Persistent);
             Memory.Array.Clear(entities->m_ComponentTypeOrderVersion, TypeManager.MaximumTypesCount);
-
-            entities->m_ArchetypeChunkAllocator = new BlockAllocator(AllocatorManager.Persistent, 16 * 1024 * 1024); // 16MB should be enough
+// TBS MOD START
+// BEFORE
+            //entities->m_ArchetypeChunkAllocator = new BlockAllocator(AllocatorManager.Persistent, 16 * 1024 * 1024); // 16MB should be enough
+// AFTER
+            entities->m_ArchetypeChunkAllocator = new BlockAllocator(AllocatorManager.Persistent, 256 * 1024 * 1024); // 16MB should be enough
+// TBS MOD END
             entities->m_TypeLookup = new ArchetypeListMap();
             entities->m_TypeLookup.Init(16);
             entities->m_WorldSequenceNumber = worldSequenceNumber;
